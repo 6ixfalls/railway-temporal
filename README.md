@@ -8,12 +8,17 @@ This template deploys an instance of [Temporal Server]([https://www.rabbitmq.com
 - Activities HTTP Request Example (/activities) [(source)](https://github.com/temporalio/samples-typescript/tree/main/activities-examples)
 ## Usage
 - Click the deploy to Railway button above!
-- Configure the temporal sql.yaml file in the temporal directory.
-- Fill out the required environment variables, setup auth as needed.
+- Fill out the required environment variables, setup authentication as needed.
 - Deploy, and check out your new Temporal server!
+- Need to change something? Configure the dynamic.yaml file in the temporal folder.
+
+### Connecting
+By default, the temporal server is exposed on Railway private networking with the default port at `temporal.railway.internal:7233`. Specify this address in your workers and clients.
 ## Links
 Temporal - https://github.com/temporalio/temporal
 
 TypeScript Samples - https://github.com/temporalio/samples-typescript
 
 Temporal Documentation - https://docs.temporal.io/
+
+Dynamic Configuration - https://docs.temporal.io/references/dynamic-configuration

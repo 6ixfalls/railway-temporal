@@ -1,0 +1,6 @@
+# Configure dynamic values here:
+# https://docs.temporal.io/references/dynamic-configuration
+
+limit.maxIDLength:
+  - value: 255
+    constraints: {}
