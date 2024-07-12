@@ -1,0 +1,5 @@
+FROM temporaliotest/auto-setup:sha-cab0545
+
+COPY ./railway.sh /etc/temporal/railway.sh
+
+ENTRYPOINT ["/etc/temporal/railway.sh"]
