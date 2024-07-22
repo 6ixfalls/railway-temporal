@@ -1,5 +1,7 @@
 FROM temporaliotest/server:sha-cab0545
 
-COPY ./railway.sh /etc/temporal/railway.sh
+RUN apk add --no-cache ack
+
+COPY --chmod=777 ./railway.sh /etc/temporal/railway.sh
 
 ENTRYPOINT ["/etc/temporal/railway.sh"]
