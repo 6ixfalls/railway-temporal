@@ -1,6 +1,8 @@
 FROM temporaliotest/server:sha-cab0545
 
-RUN apk add --no-cache ack
+USER root
+RUN apk add --update --no-cache ack
+USER temporal
 
 COPY --chmod=777 ./railway.sh /etc/temporal/railway.sh
 
