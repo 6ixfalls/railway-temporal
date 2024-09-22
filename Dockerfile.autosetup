@@ -1,4 +1,4 @@
-FROM temporaliotest/auto-setup:sha-cab0545
+FROM temporaliotest/auto-setup:1.25.0
 
 USER root
 RUN apk add --update --no-cache ack
