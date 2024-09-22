@@ -7,3 +7,4 @@ USER temporal
 COPY --chmod=777 ./railway.sh /etc/temporal/railway.sh
 
 ENTRYPOINT ["/etc/temporal/railway.sh"]
+CMD ["autosetup"]
