@@ -1,4 +1,4 @@
-FROM temporaliotest/server:1.25.0
+FROM temporalio/server:1.25.0
 
 USER root
 RUN apk add --update --no-cache ack
