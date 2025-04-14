@@ -1,4 +1,4 @@
-FROM temporalio/auto-setup:1.25.0
+FROM temporalio/auto-setup:1.27.2
 
 USER root
 RUN apk add --update --no-cache ack
