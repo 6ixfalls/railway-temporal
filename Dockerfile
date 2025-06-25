@@ -1,4 +1,5 @@
-FROM temporalio/auto-setup:1.27.2
+ARG TEMPORAL_VERSION=1.27.2
+FROM temporalio/auto-setup:$TEMPORAL_VERSION
 
 USER root
 RUN apk add --update --no-cache ack
