@@ -1,7 +1,12 @@
 ARG GOPROXY
+ARG TEMPORAL_IMAGE=temporalio/server
+ARG TEMPORAL_ADMIN_TOOLS_IMAGE=temporalio/admin-tools
+ARG TEMPORAL_VERSION=1.30.1
+ARG TEMPORAL_FULL_IMAGE=${TEMPORAL_IMAGE}:${TEMPORAL_VERSION}
+ARG TEMPORAL_FULL_ADMIN_TOOLS_IMAGE=${TEMPORAL_ADMIN_TOOLS_IMAGE}:${TEMPORAL_VERSION}
 
-FROM temporalio/admin-tools:1.30.1 as tools
-FROM temporalio/server:1.30.1 as server
+FROM ${TEMPORAL_FULL_ADMIN_TOOLS_IMAGE} as tools
+FROM ${TEMPORAL_FULL_IMAGE} as server
 
 COPY --from=tools --chmod=755 --chown=temporal:temporal \
     /usr/local/bin/temporal \
