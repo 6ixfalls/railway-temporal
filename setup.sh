@@ -3,7 +3,7 @@ set -eu
 
 # Validate required environment variables
 : "${ES_SCHEME:?ERROR: ES_SCHEME environment variable is required}"
-: "${ES_HOST:?ERROR: ES_HOST environment variable is required}"
+: "${ES_SEEDS:?ERROR: ES_SEEDS environment variable is required}"
 : "${ES_PORT:?ERROR: ES_PORT environment variable is required}"
 : "${ES_VISIBILITY_INDEX:?ERROR: ES_VISIBILITY_INDEX environment variable is required}"
 : "${ES_VERSION:?ERROR: ES_VERSION environment variable is required}"
@@ -26,7 +26,7 @@ temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" 
 
 # Setup Elasticsearch index
 echo 'Using temporal-elasticsearch-tool for Elasticsearch setup'
-temporal-elasticsearch-tool --ep "$ES_SCHEME://$ES_HOST:$ES_PORT" setup-schema
-temporal-elasticsearch-tool --ep "$ES_SCHEME://$ES_HOST:$ES_PORT" create-index --index $ES_VISIBILITY_INDEX
+temporal-elasticsearch-tool --ep "$ES_SCHEME://$ES_SEEDS:$ES_PORT" setup-schema
+temporal-elasticsearch-tool --ep "$ES_SCHEME://$ES_SEEDS:$ES_PORT" create-index --index $ES_VISIBILITY_INDEX
 
 echo 'PostgreSQL and Elasticsearch setup complete'
