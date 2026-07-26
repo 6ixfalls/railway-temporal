@@ -13,15 +13,16 @@ set -eu
 
 echo 'Starting PostgreSQL and Elasticsearch schema setup...'
 echo 'Waiting for PostgreSQL port to be available...'
-nc -z -w 10 ${POSTGRES_SEEDS} ${DB_PORT:-5432}
+export DB_PORT="${DB_PORT:-5432}"
+nc -z -w 10 ${POSTGRES_SEEDS} ${DB_PORT}
 echo 'PostgreSQL port is available'
 
 export SQL_PASSWORD="${POSTGRES_PWD:-}"
 export SQL_TLS="${SQL_TLS_ENABLED:-false}"
 # Create and setup temporal database
-temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p 5432 --db "${DBNAME}" create
-temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p 5432 --db "${DBNAME}" setup-schema -v 0.0
-temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p 5432 --db "${DBNAME}" update-schema -d /etc/temporal/schema/postgresql/v12/temporal/versioned
+temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p ${DB_PORT} --db "${DBNAME}" create
+temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p ${DB_PORT} --db "${DBNAME}" setup-schema -v 0.0
+temporal-sql-tool --plugin "$DB" --ep "${POSTGRES_SEEDS}" -u "${POSTGRES_USER}" -p ${DB_PORT} --db "${DBNAME}" update-schema -d /etc/temporal/schema/postgresql/v12/temporal/versioned
 
 # Setup Elasticsearch index
 echo 'Using temporal-elasticsearch-tool for Elasticsearch setup'
