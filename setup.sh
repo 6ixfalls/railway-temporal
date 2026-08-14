@@ -86,5 +86,8 @@ setup_server(){
     exit 0
 }
 
-/etc/temporal/entrypoint.sh &
+(
+  unset TEMPORAL_SERVICES
+  /etc/temporal/entrypoint.sh
+) &
 setup_server
