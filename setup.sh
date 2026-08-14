@@ -84,12 +84,21 @@ setup_server(){
             add_custom_search_attributes
         fi
     fi
-
-    exit 0
 }
 
 (
-  unset TEMPORAL_SERVICES
-  /etc/temporal/entrypoint.sh
+    unset TEMPORAL_SERVICES
+    exec /etc/temporal/entrypoint.sh
 ) &
+TEMPORAL_PID=$!
+
 setup_server
+
+echo "Setup complete. Sending SIGTERM to Temporal..."
+kill -TERM "$TEMPORAL_PID"
+
+echo "Waiting for Temporal to shut down..."
+wait "$TEMPORAL_PID"
+
+echo "Temporal shut down."
+exit 0
