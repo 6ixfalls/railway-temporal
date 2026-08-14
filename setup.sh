@@ -67,6 +67,8 @@ add_custom_search_attributes() {
 # @@@SNIPEND
 }
 
+export TEMPORAL_ADDRESS="127.0.0.1:${PORT}"
+
 setup_server(){
     echo "Temporal CLI address: ${TEMPORAL_ADDRESS}."
 
