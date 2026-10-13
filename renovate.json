@@ -1,6 +1,6 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "github>home-operations/renovate-presets//managers/annotated.json5#2.2.0"
+        "github>home-operations/renovate-presets//managers/annotated.json5#8.1.0"
     ]
 }
